@@ -10,7 +10,6 @@ import { fileURLToPath } from "url";
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Configurações de caminho para servir arquivos estáticos
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -19,17 +18,19 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Servir HTML e outros arquivos estáticos
+// Servir arquivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Configuração do Multer para salvar arquivos com extensão
+// Certifique-se de que a pasta uploads existe
+const uploadsDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
+
+// Multer
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
+  destination: (req, file, cb) => cb(null, uploadsDir),
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
     cb(null, Date.now() + ext);
@@ -37,16 +38,14 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Webhook do Discord
-const webhookURL = "const webhookURL = "https://discord.com/api/webhooks/1434250571191160834/Kd9p4Zi8cZrl-zFz3DVBPsAEagwy6DpXJ2KWKmfu7zoDcgxo_2Y215mloSbUVJ8aGrGV";
-";
+// Webhook correto
+const webhookURL = "https://discord.com/api/webhooks/1434250571191160834/Kd9p4Zi8cZrl-zFz3DVBPsAEagwy6DpXJ2KWKmfu7zoDcgxo_2Y215mloSbUVJ8aGrGV";
 
-// Rota para envio do formulário
+// Rota de envio
 app.post("/enviar", upload.single("print_discord"), async (req, res) => {
   try {
     const data = req.body;
 
-    // Monta a mensagem
     const message = `
 \`\`\`diff
 + **Novo Subdono Candidato**
@@ -76,21 +75,16 @@ app.post("/enviar", upload.single("print_discord"), async (req, res) => {
 \`\`\`
 `;
 
-    // Cria FormData para enviar para o Discord
     const form = new FormData();
     form.append("payload_json", JSON.stringify({
       content: message,
       embeds: req.file ? [{ title: "Print da conta Discord", image: { url: `attachment://${req.file.filename}` } }] : []
     }));
 
-    if (req.file) {
-      form.append("file", fs.createReadStream(req.file.path), req.file.filename);
-    }
+    if (req.file) form.append("file", fs.createReadStream(req.file.path), req.file.filename);
 
-    // Envia para o Discord
     await axios.post(webhookURL, form, { headers: form.getHeaders() });
 
-    // Remove arquivo temporário
     if (req.file) fs.unlinkSync(req.file.path);
 
     res.json({ success: true, message: "Formulário enviado com sucesso!" });
@@ -100,7 +94,5 @@ app.post("/enviar", upload.single("print_discord"), async (req, res) => {
   }
 });
 
-// Inicializa servidor
+// Inicia servidor
 app.listen(port, () => console.log(`✅ Servidor rodando em http://localhost:${port}`));
-
-
