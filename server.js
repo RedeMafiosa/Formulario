@@ -38,7 +38,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Webhook do Discord
-const webhookURL = "https://discord.com/api/webhooks/SEU_WEBHOOK_AQUI";
+const webhookURL = "https://discord.com/api/webhooks/https://discord.com/api/webhooks/1434250571191160834/Kd9p4Zi8cZrl-zFz3DVBPsAEagwy6DpXJ2KWKmfu7zoDcgxo_2Y215mloSbUVJ8aGrGV";
 
 // Rota para envio do formulário
 app.post("/enviar", upload.single("print_discord"), async (req, res) => {
@@ -101,3 +101,4 @@ app.post("/enviar", upload.single("print_discord"), async (req, res) => {
 
 // Inicializa servidor
 app.listen(port, () => console.log(`✅ Servidor rodando em http://localhost:${port}`));
+
