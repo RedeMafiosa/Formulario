@@ -60,6 +60,7 @@ ${data.nick_discord}
 
 + Idade: 
 ${data.idade}
+
 + Discord (ou outro contato): 
 ${data.discord}
 
@@ -140,4 +141,5 @@ ${data.pc_obrigatorio}
 
 // Inicia servidor
 app.listen(port, () => console.log(`✅ Servidor rodando em http://localhost:${port}`));
+
 
