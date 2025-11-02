@@ -57,8 +57,8 @@ h1, .instructions {
   <img src="https://i.imgur.com/AS2vlMv.png" alt="Logo RedeMafiosa" class="logo" />
 
   <form id="formulario" enctype="multipart/form-data">
-    <h1 class="titulo-centralizado">Formulário de Dono - Servidor Oficial Rede Mafiosa</h1>
-    <p class="instructions">Preencha com atenção todas as informações. Apenas candidatos sérios e comprometidos com nosso servidor serão considerados.</p>
+<h1 class="titulo-centralizado">Formulário de Dono - Servidor Oficial Rede Mafiosa</h1>
+<p class="instructions">Preencha com atenção todas as informações. Apenas candidatos sérios e comprometidos com nosso servidor serão considerados.</p>
 
 <form action="enviar_discord.php" method="POST" enctype="multipart/form-data">
 <label for="nome">Nome Completo:</label>
@@ -141,29 +141,27 @@ h1, .instructions {
 <p>Comprimentos da Equipe [RedeMafiosa]</p>
 <input type="submit" value="Enviar Formulário">
 </form>
-</div>
-
 <script>
-const form = document.getElementById('formulario');
+const form = document.getElementById("formulario");
 
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
 
-    try {
-        const res = await fetch('https://formulario-wdpu.onrender.com//enviar', {
-            method: 'POST',
-            body: formData
-        });
+  try {
+    const res = await fetch("https://formulario-wdpu.onrender.com/enviar", {
+      method: "POST",
+      body: formData
+    });
 
-        const json = await res.json();
-        alert(json.message);
-
-        if(json.success) form.reset();
-    } catch(err) {
-        console.error("Erro:", err);
-        alert("Erro ao enviar formulário. Verifique se o servidor Node.js está rodando em localhost:3000");
-    }
+    const json = await res.json();
+    alert(json.message);
+    
+    if (json.success) form.reset();
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao enviar formulário. O servidor pode estar despertando, tente novamente.");
+  }
 });
 </script>
 </body>
