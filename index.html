@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário Subdono - RedeMafiosa</title>
+<style>
+body {
+    font-family: Georgia, serif;
+    background-color: #0d0d0d;
+    color: #fff;
+}
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+}
+label {
+    display: block;
+    margin-top: 15px;
+    color: #00ff57;
+}
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #262626;
+    color: #fff;
+}
+input[type="submit"] {
+    background-color: #00ff57;
+    color: #000;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+}
+img {
+    display: block;
+    margin: 0 auto 20px;
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    filter: drop-shadow(0 0 8px #00ff57)
+            drop-shadow(0 0 18px #00ff57)
+            drop-shadow(0 0 35px rgba(0,255,87,0.7));
+}
+</style>
+</head>
+<body>
+<div class="container">
+<img src="https://i.imgur.com/AS2vlMv.png" alt="Logo RedeMafiosa" />
+<h1>Formulário Subdono</h1>
+
+<form id="formulario" enctype="multipart/form-data">
+    <h1>Formulário de Dono - Servidor Oficial Rede Mafiosa</h1>
+<p class="instructions">Preencha com atenção todas as informações. Apenas candidatos sérios e comprometidos com nosso servidor serão considerados.</p>
+
+<form action="enviar_discord.php" method="POST" enctype="multipart/form-data">
+<label for="nome">Nome Completo:</label>
+<input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+
+<label for="nick">Nick In-Game:</label>
+<input type="text" id="nick" name="nick" placeholder="Seu nick no servidor" required>
+
+<label for="nick_discord">Nick Do Discord:</label>
+<input type="text" id="nick_discord" name="nick_discord" placeholder="Seu Discord" required>
+
+<label for="idade">Idade:</label>
+<input type="number" id="idade" name="idade" placeholder="Ex: 18" min="15" max="100" required>
+
+<label for="discord">Discord (ou outro contato):</label>
+<input type="text" id="discord" name="discord" placeholder="Seu Discord ou contato principal" required>
+
+<label for="horas">Quantas horas pode jogar/trabalhar por dia? (importante)</label>
+<input type="text" id="horas" name="horas" placeholder="" required>
+
+<label for="experiencia">Experiência em administração de servidores SAMP:</label>
+<textarea id="experiencia" name="experiencia" placeholder="Descreva toda sua experiência, cargos anteriores e tempo de atuação." required></textarea>
+
+<label for="tempo_servidor">Há quanto tempo joga SAMP?</label>
+<input type="text" id="tempo_servidor" name="tempo_servidor" placeholder="Ex: 5 anos" required>
+
+<label for="participacao">Você participa ativamente de eventos, projetos ou da comunidade do servidor?</label>
+<textarea id="participacao" name="participacao" placeholder="Descreva sua participação e envolvimento" required></textarea>
+
+<label for="regras">Você conhece todas as regras do servidor? Cite as principais: (obs: quantas mais melhor)</label>
+<textarea id="regras" name="regras" placeholder="Liste as regras que você conhece" required></textarea>
+
+<label for="discord_servidor">Como você contribui na comunidade do Discord do servidor?</label>
+<textarea id="discord_servidor" name="discord_servidor" placeholder="Explique sua postura, ajuda e interações no Discord" required></textarea>
+
+<label for="link_discord">Insira nosso link do Discord do servidor?</label>
+<textarea id="link_discord" name="link_discord" placeholder="Link" required></textarea>
+
+<label for="plugins">Nos diga, quais plugins principais de uma gamemode RPG</label>
+<textarea id="plugins" name="plugins" placeholder="Plugins" required></textarea>
+
+<label for="tipo_servidor">Nosso servidor é: RP | PVP| RPG | DRIFT ?</label>
+<textarea id="tipo_servidor" name="tipo_servidor" placeholder="Explique aqui" required></textarea>
+
+<label for="preparacao">Você está disponível e preparado para ser mesmo um Dono?</label>
+<textarea id="preparacao" name="preparacao" placeholder="Explique sua postura, no Servidor" required></textarea>
+
+<label for="motivacao">Motivação para se tornar dono:</label>
+<textarea id="motivacao" name="motivacao" placeholder="Explique por que deseja assumir esta responsabilidade." required></textarea>
+
+<label for="situacoes">Como reagiria em situações de conflito ou abuso no servidor?</label>
+<textarea id="situacoes" name="situacoes" placeholder="Explique sua postura em casos críticos." required></textarea>
+
+<label for="ideias">Ideias para melhoria do servidor:</label>
+<textarea id="ideias" name="ideias" placeholder="Descreva suas ideias de administração, melhorias ou eventos." required></textarea>
+
+<label for="fidelidade">Como você demonstraria fidelidade e comprometimento com nosso servidor?</label>
+<textarea id="fidelidade" name="fidelidade" placeholder="Explique como seria um dono exemplar" required></textarea>
+
+<label for="sabe_dono">Sabe o que faz um dono?</label>
+<textarea id="sabe_dono" name="sabe_dono" placeholder="Explique como seria um dono exemplar" required></textarea>
+
+<label for="situacoes_extremas">Descreva como agiria em situações extremas, como hacks, cheaters ou conflitos entre jogadores e staff:</label>
+<textarea id="situacoes_extremas" name="situacoes_extremas" placeholder="Explique sua postura detalhadamente" required></textarea>
+
+<label for="discord_ano">Seu Discord tem mais de 1 ano?</label>
+<input type="text" id="discord_ano" name="discord_ano" placeholder="Sim/Não" required>
+<p class="file-instruction">É obrigatório que seu Discord tenha mais de 1 ano. Por favor, anexe um print ou foto da sua conta mostrando a antiguidade (seu perfil somente).</p>
+<label for="print_discord">Anexe o print/foto do seu Discord:</label>
+<input type="file" id="print_discord" name="print_discord" accept="image/*" required>
+
+<label for="pc_obrigatorio">Você é obrigado a ter PC para disponibilidade para ajudar no servidor sendo Rápido, Atento, e trabalhar em (vídeos, Discord, divulgação, etc)</label>
+<input type="text" id="pc_obrigatorio" name="pc_obrigatorio" placeholder="Sim/Não e explique" required>
+
+<label>Esperamos que seja correto e comprometido, sabendo que está fazendo, pois um dono não é um Staff!</label>
+<label>Após enviar o formulário, iremos analisar, e entraremos em contato pelos meios fornecidos acima (tempo máximo 48h).</label>
+<label>Desejamos a você boa sorte e seja sincero.</label>
+<p>Comprimentos da Equipe [RedeMafiosa]</p>
+<input type="submit" value="Enviar Formulário">
+</form>
+</div>
+
+<script>
+const form = document.getElementById('formulario');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    try {
+        const res = await fetch('http://localhost:3000/enviar', {
+            method: 'POST',
+            body: formData
+        });
+
+        const json = await res.json();
+        alert(json.message);
+
+        if(json.success) form.reset();
+    } catch(err) {
+        console.error("Erro:", err);
+        alert("Erro ao enviar formulário. Verifique se o servidor Node.js está rodando em localhost:3000");
+    }
+});
+</script>
+</body>
+</html>

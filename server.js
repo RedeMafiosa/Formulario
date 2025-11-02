@@ -1,0 +1,106 @@
+import express from "express";
+import multer from "multer";
+import axios from "axios";
+import cors from "cors";
+import fs from "fs";
+import FormData from "form-data";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Para conseguir usar __dirname no ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Middlewares
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Servir arquivos estáticos da pasta public
+app.use(express.static(path.join(__dirname, "public")));
+
+// ✅ Multer com EXTENSÃO do arquivo
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname); // pega .png .jpg etc
+    const fileName = Date.now() + ext;
+    cb(null, fileName);
+  }
+});
+
+const upload = multer({ storage });
+
+// Webhook do Discord
+const webhookURL = "https://discord.com/api/webhooks/1434250571191160834/Kd9p4Zi8cZrl-zFz3DVBPsAEagwy6DpXJ2KWKmfu7zoDcgxo_2Y215mloSbUVJ8aGrGV";
+
+// Rota para envio do formulário
+app.post("/enviar", upload.single("print_discord"), async (req, res) => {
+  try {
+    const data = req.body;
+
+    const message = `
+\`\`\`diff
++ **Novo Subdono Candidato**
++ **Nome:** ${data.nome}
++ **Nick In-Game:** ${data.nick}
++ **Nick do Discord:** ${data.nick_discord}
++ **Idade:** ${data.idade}
++ **Discord (ou outro contato):** ${data.discord}
++ **Quantas horas pode jogar/trabalhar por dia?:** ${data.horas}
++ **Experiência em administração de servidores SAMP:** ${data.experiencia}
++ **Há quanto tempo joga SAMP?:** ${data.tempo_servidor}
++ **Você participa ativamente de eventos, projetos ou da comunidade do servidor?:** ${data.participacao}
++ **Você conhece todas as regras do servidor? Cite as principais:** ${data.regras}
++ **Como você contribui na comunidade do Discord do servidor?:** ${data.discord_servidor}
++ **Insira nosso link do Discord do servidor:** ${data.link_discord}
++ **Quais plugins principais de uma gamemode RPG:** ${data.plugins}
++ **Nosso servidor é: RP | PVP | RPG | DRIFT ?:** ${data.tipo_servidor}
++ **Você está disponível e preparado para ser mesmo um Dono?:** ${data.preparacao}
++ **Motivação para se tornar dono:** ${data.motivacao}
++ **Como reagiria em situações de conflito ou abuso no servidor?:** ${data.situacoes}
++ **Ideias para melhoria do servidor:** ${data.ideias}
++ **Como você demonstraria fidelidade e comprometimento com nosso servidor?:** ${data.fidelidade}
++ **Sabe o que faz um dono?:** ${data.sabe_dono}
++ **Descreva como agiria em situações extremas, como hacks, cheaters ou conflitos:** ${data.situacoes_extremas}
++ **Discord > 1 ano?:** ${data.discord_ano}
++ **Possui PC?:** ${data.pc_obrigatorio}
+\`\`\`
+`;
+
+    const form = new FormData();
+    form.append("payload_json", JSON.stringify({
+      content: message,
+      embeds: req.file
+        ? [
+            {
+              title: "Print da conta Discord",
+              image: { url: `attachment://${req.file.filename}` }
+            }
+          ]
+        : []
+    }));
+
+    if (req.file) {
+      form.append("file", fs.createReadStream(req.file.path), req.file.filename);
+    }
+
+    await axios.post(webhookURL, form, { headers: form.getHeaders() });
+
+    if (req.file) fs.unlinkSync(req.file.path);
+
+    res.json({ success: true, message: "Formulário enviado com sucesso!" });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Erro ao enviar formulário." });
+  }
+});
+
+// Inicializa servidor
+app.listen(port, () => console.log(`✅ Servidor rodando em http://localhost:${port}`));
