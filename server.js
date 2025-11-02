@@ -49,29 +49,73 @@ app.post("/enviar", upload.single("print_discord"), async (req, res) => {
     const message = `
 \`\`\`diff
 + **Novo Subdono Candidato**
-+ Nome: ${data.nome}
-+ Nick In-Game: ${data.nick}
-+ Nick do Discord: ${data.nick_discord}
-+ Idade: ${data.idade}
-+ Discord: ${data.discord}
-+ Horas/dia: ${data.horas}
-+ Experiência: ${data.experiencia}
-+ Tempo no Servidor: ${data.tempo_servidor}
-+ Participação: ${data.participacao}
-+ Regras: ${data.regras}
-+ Contribuição Discord: ${data.discord_servidor}
-+ Link Discord: ${data.link_discord}
-+ Plugins: ${data.plugins}
-+ Tipo de servidor: ${data.tipo_servidor}
-+ Disponibilidade: ${data.preparacao}
-+ Motivação: ${data.motivacao}
-+ Situações de conflito: ${data.situacoes}
-+ Ideias: ${data.ideias}
-+ Fidelidade: ${data.fidelidade}
-+ Sabe o que faz um dono: ${data.sabe_dono}
-+ Situações extremas: ${data.situacoes_extremas}
-+ Discord > 1 ano?: ${data.discord_ano}
-+ Possui PC?: ${data.pc_obrigatorio}
++ Nome: 
+${data.nome}
+
++ Nick In-Game: 
+${data.nick}
+
++ Nick do Discord: 
+${data.nick_discord}
+
++ Idade: 
+${data.idade}
++ Discord (ou outro contato): 
+${data.discord}
+
++ Quantas horas pode jogar/trabalhar por dia? (importante): 
+${data.horas}
+
++ Experiência em administração de servidores SAMP: 
+${data.experiencia}
+
++ Há quanto tempo joga SAMP?: 
+${data.tempo_servidor}
+
++ Você participa ativamente de eventos, projetos ou da comunidade do servidor?: 
+${data.participacao}
+
++ Você conhece todas as regras do servidor? Cite as principais: (obs: quantas mais melhor): 
+${data.regras}
+
++ Como você contribui na comunidade do Discord do servidor?: 
+${data.discord_servidor}
+
++ Insira nosso link do Servidor Discord: 
+${data.link_discord}
+
++ Nos diga, quais plugins principais de uma gamemode RPG: 
+${data.plugins}
+
++ Nosso servidor é: RP | PVP| RPG | DRIFT ?: 
+${data.tipo_servidor}
+
++ Você está disponível e preparado para ser mesmo um Dono?: 
+${data.preparacao}
+
++ Motivação para se tornar dono: 
+${data.motivacao}
+
++ Como reagiria em situações de conflito ou abuso no servidor?: 
+${data.situacoes}
+
++ Ideias para melhoria do servidor: 
+${data.ideias}
+
++ Como você demonstraria fidelidade e comprometimento com nosso servidor?: 
+${data.fidelidade}
+
++ Sabe o que faz um dono?: 
+${data.sabe_dono}
+
++ Descreva como agiria em situações extremas, como hacks, cheaters ou conflitos entre jogadores e staff: 
+${data.situacoes_extremas}
+
++ Seu Discord tem mais de 1 ano?: 
+${data.discord_ano}
+
++ Possui PC?(sim): 
+${data.pc_obrigatorio}
 \`\`\`
 `;
 
@@ -96,3 +140,4 @@ app.post("/enviar", upload.single("print_discord"), async (req, res) => {
 
 // Inicia servidor
 app.listen(port, () => console.log(`✅ Servidor rodando em http://localhost:${port}`));
+
