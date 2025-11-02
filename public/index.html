@@ -151,7 +151,7 @@ form.addEventListener('submit', async (e) => {
     const formData = new FormData(form);
 
     try {
-        const res = await fetch('http://localhost:3000/enviar', {
+        const res = await fetch('https://formulario-wdpu.onrender.com//enviar', {
             method: 'POST',
             body: formData
         });
