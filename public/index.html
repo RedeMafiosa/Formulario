@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -39,26 +38,27 @@ input[type="submit"] {
     margin-top: 20px;
     cursor: pointer;
 }
-img {
+.logo {
     display: block;
     margin: 0 auto 20px;
-    width: 100%;
-    max-width: 450px;
+    width: 200px; /* tamanho da imagem */
     height: auto;
-    filter: drop-shadow(0 0 8px #00ff57)
-            drop-shadow(0 0 18px #00ff57)
-            drop-shadow(0 0 35px rgba(0,255,87,0.7));
+}
+h1, .instructions {
+    text-align: center;
+}
+.instructions {
+    margin-bottom: 20px;
 }
 </style>
 </head>
 <body>
 <div class="container">
-<img src="https://i.imgur.com/AS2vlMv.png" alt="Logo RedeMafiosa" />
-<h1>Formulário Subdono</h1>
+  <img src="https://i.imgur.com/AS2vlMv.png" alt="Logo RedeMafiosa" class="logo" />
 
-<form id="formulario" enctype="multipart/form-data">
-    <h1>Formulário de Dono - Servidor Oficial Rede Mafiosa</h1>
-<p class="instructions">Preencha com atenção todas as informações. Apenas candidatos sérios e comprometidos com nosso servidor serão considerados.</p>
+  <form id="formulario" enctype="multipart/form-data">
+    <h1 class="titulo-centralizado">Formulário de Dono - Servidor Oficial Rede Mafiosa</h1>
+    <p class="instructions">Preencha com atenção todas as informações. Apenas candidatos sérios e comprometidos com nosso servidor serão considerados.</p>
 
 <form action="enviar_discord.php" method="POST" enctype="multipart/form-data">
 <label for="nome">Nome Completo:</label>
@@ -94,7 +94,7 @@ img {
 <label for="discord_servidor">Como você contribui na comunidade do Discord do servidor?</label>
 <textarea id="discord_servidor" name="discord_servidor" placeholder="Explique sua postura, ajuda e interações no Discord" required></textarea>
 
-<label for="link_discord">Insira nosso link do Discord do servidor?</label>
+<label for="link_discord">Insira nosso link do Servidor Discord:</label>
 <textarea id="link_discord" name="link_discord" placeholder="Link" required></textarea>
 
 <label for="plugins">Nos diga, quais plugins principais de uma gamemode RPG</label>
@@ -130,11 +130,13 @@ img {
 <label for="print_discord">Anexe o print/foto do seu Discord:</label>
 <input type="file" id="print_discord" name="print_discord" accept="image/*" required>
 
-<label for="pc_obrigatorio">Você é obrigado a ter PC para disponibilidade para ajudar no servidor sendo Rápido, Atento, e trabalhar em (vídeos, Discord, divulgação, etc)</label>
+<label for="pc_obrigatorio">Você é obrigado a ter PC para disponibilidade para ajudar no servidor sendo Rápido, Atento, e trabalhar em (vídeos, Discord, divulgação, etc) Tem PC?</label>
 <input type="text" id="pc_obrigatorio" name="pc_obrigatorio" placeholder="Sim/Não e explique" required>
 
+<label>Deverá ser Ativo e Noticiário, avisando em comunicados/avisos para deixar o servidor movimentado.</label>
 <label>Esperamos que seja correto e comprometido, sabendo que está fazendo, pois um dono não é um Staff!</label>
-<label>Após enviar o formulário, iremos analisar, e entraremos em contato pelos meios fornecidos acima (tempo máximo 48h).</label>
+<label>Caso contrário não respeite ou abuse, será removido ou mesmo banido.</label>
+<label>Após enviar o formulário, iremos analisar, e entraremos em contato pelos meios fornecidos acima (NICK DISCORD) (tempo máximo 72h).</label>
 <label>Desejamos a você boa sorte e seja sincero.</label>
 <p>Comprimentos da Equipe [RedeMafiosa]</p>
 <input type="submit" value="Enviar Formulário">
